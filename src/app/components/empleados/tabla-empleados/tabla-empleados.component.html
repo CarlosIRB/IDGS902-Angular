@@ -1,0 +1,43 @@
+<p-card>
+  <div class="grid">
+    <div class="col-11">Lista de empleados</div>
+    <p-button
+      icon="pi pi-plus-circle"
+      (onClick)="modalEmpleados.show()"
+      severity="success"
+    ></p-button>
+  </div>
+  <hr>
+  <p-table [value]="empleados" styleClass="p-datatable-gridlines">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>No.</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Telefono</th>
+        <th>Fecha de nacimiento</th>
+        <th>Sexo</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-empleado>
+      <tr (dblclick)="modalEmpleados.show(empleado.idEmpleado)">
+        <td>{{ empleado.numero }}</td>
+        <td>{{ empleado.nombre }}</td>
+        <td>{{ empleado.correo }}</td>
+        <td>{{ empleado.telefono }}</td>
+        <td>{{ empleado.fechaNacimiento | date : "dd/MM/yy" }}</td>
+        <td>{{ empleado.sexo }}</td>
+        <td>
+          <p-button
+            icon="pi pi-minus"
+            severity="danger"
+            (onClick)="eliminarEmpleado(empleado.idEmpleado)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
+
+<app-modal-empleados #modalEmpleados></app-modal-empleados>

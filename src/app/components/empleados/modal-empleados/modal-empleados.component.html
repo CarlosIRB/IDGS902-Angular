@@ -1,0 +1,84 @@
+<p-dialog
+  [header]="titulo"
+  [modal]="true"
+  [closable]="true"
+  [closeOnEscape]="true"
+  [(visible)]="display"
+  contentStyle="background-color: #f2f2f2; color: #333;"
+  headerStyle="background-color: #e0e0e0; color: #333;"
+>
+  <div class="form-container">
+    <div class="field">
+      <label for="numero">Número de Empleado</label>
+      <input
+        pInputText
+        [(ngModel)]="empleado.numero"
+        id="numero"
+        type="text"
+        class="p-inputtext p-component p-filled"
+      />
+    </div>
+    <div class="field">
+      <label for="nombre">Nombre</label>
+      <input
+        pInputText
+        [(ngModel)]="empleado.nombre"
+        id="nombre"
+        type="text"
+        class="p-inputtext p-component p-filled"
+      />
+    </div>
+    <div class="field">
+      <label for="correo">Correo</label>
+      <input
+        pInputText
+        [(ngModel)]="empleado.correo"
+        id="correo"
+        type="text"
+        class="p-inputtext p-component p-filled"
+      />
+    </div>
+    <div class="field">
+      <label for="telefono">Teléfono</label>
+      <input
+        pInputText
+        id="telefono"
+        type="text"
+        [(ngModel)]="empleado.telefono"
+        class="p-inputtext p-component p-filled"
+      />
+    </div>
+    <div class="field">
+      <label for="fecha">Fecha de nacimiento</label>
+      <p-calendar
+        [(ngModel)]="empleado.fechaNacimiento"
+        [showIcon]="true"
+        severity="success"
+        [touchUI]="true"
+        inputId="icondisplay"
+        dateFormat="dd/mm/yy"
+      ></p-calendar>
+    </div>
+    <div class="field">
+      <label for="sexo">Sexo</label>
+      <div *ngFor="let opcion of opciones" class="field-radiobutton">
+        <p-radioButton
+          [inputId]="opcion.key"
+          [(ngModel)]="empleado.sexo"
+          [value]="opcion.valor"
+        ></p-radioButton>
+        <label [for]="opcion.key" class="ml-2">
+          {{ opcion.nombre }}
+        </label>
+      </div>
+    </div>
+    <div class="field text-center">
+      <button
+        pButton
+        [label]="btnLabel"
+        (click)="actualizar ? actualizarEmpleado() : guardar()"
+        class="p-button-success"
+      ></button>
+    </div>
+  </div>
+</p-dialog>
